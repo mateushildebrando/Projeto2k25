@@ -1,0 +1,93 @@
+h1, h2, p, a, li {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html, body {
+    height: 100%; /* ocupa a tela toda */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #b50000;
+    width: 100%;
+}
+
+.login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.login h1 {
+    color: black;
+    margin: 0.8em 0.5em 0 0.5em;
+}
+
+.login p {
+    margin: 1.5em 0.5em 0 0.5em;
+}
+
+.login a {
+    color: white;
+    text-decoration: none;
+
+}
+
+.login a:hover {
+    color: #007bff;
+}
+
+.nav_basica ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.5em 0;
+    display: flex;
+    gap: 20px; /* espaçamento entre os itens */
+    justify-content: center; /* ou flex-start, se preferir à esquerda */
+}
+
+.nav_basica li a{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: black;
+}
+
+.nav_basica li a:hover {
+    color: #007bff;
+}
+
+main {
+    flex: 1; /* empurra o footer pra baixo */
+    width: 100%;
+    background-image: url('/static/imagens/fundo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+}
+
+.rodape{
+    background-color: #b50000;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px; /* espaçamento entre os itens */
+    justify-content: center; /* ou flex-start, se preferir à esquerda */
+    width: 100%;
+}
+
+.rodape a{
+    text-decoration: none;
+    color: black;
+}
+
+.rodape a:hover {
+    color: #007bff;
+}

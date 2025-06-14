@@ -1,0 +1,47 @@
+.formulario {
+    margin: 1em;
+    padding: 1em;
+    background-color: #801b0c;
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    color: white;
+    gap: 1em;
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.formulario input, .formulario button {
+    padding: 0.7em;
+    border-radius: 4px;
+    border: none;
+}
+
+#opcoes {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+#opcoes button {
+    padding: 0.7em 1em;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: #801b0c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#opcoes button:hover {
+    background-color: #a02a1c;
+}
+
+.oculto {
+    display: none;
+}

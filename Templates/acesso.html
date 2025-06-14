@@ -1,0 +1,60 @@
+{% extends "base.html"%}
+
+{% block title%}Cadastro e Login{%endblock%}
+
+{% block head%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/logincss.css') }}">
+    <script>
+    const btnCadastro = document.getElementById('btn-cadastro');
+    const btnLogin = document.getElementById('btn-login');
+    const formCadastro = document.getElementById('form-cadastro');
+    const formLogin = document.getElementById('form-login');
+
+    btnCadastro.addEventListener('click', () => {
+        formCadastro.classList.remove('oculto');
+        formLogin.classList.add('oculto');
+    });
+
+    btnLogin.addEventListener('click', () => {
+        formLogin.classList.remove('oculto');
+        formCadastro.classList.add('oculto');
+    });
+</script>
+
+{%endblock%}
+
+{%block content%}
+    <section id="opcoes">
+        <button id="btn-cadastro">Cadastro</button>
+        <button id="btn-login">Login</button>
+    </section>
+
+    <section id="form-cadastro" class="formulario oculto">
+        <h2>Cadastro</h2>
+        <form method="post">
+            <label for="username">Nome de usuário:</label>
+            <input id="username" name="first-name" type="text" required />
+
+            <label for="email">E-mail:</label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="password">Senha:</label>
+            <input id="password" name="password" type="password" pattern="[a-z0-5]{8,}" required />
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+
+    <section id="form-login" class="formulario oculto">
+        <h2>Login</h2>
+        <form method="post">
+            <label for="login-email">E-mail:</label>
+            <input id="login-email" name="email" type="email" required />
+
+            <label for="login-password">Senha:</label>
+            <input id="login-password" name="password" type="password" required />
+
+            <button type="submit">Entrar</button>
+        </form>
+    </section>
+{%endblock%}

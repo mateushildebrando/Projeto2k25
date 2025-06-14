@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <link rel="icon" href="icone.ico" type="image/x-icon">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mycss.css') }}">
+        <meta charset="UTF-8">
+        <title>{% block title %}Index_base{% endblock %}</title>
+        {% block head %}{% endblock %}
+    </head> 
+    <body>
+        <header>
+            <section class="login">
+                <h1>Index_base</h1>
+                <p><a href="{{ url_for("acesso") }}">Cadastro e Login</a></p>
+            </section>
+            <nav class="nav_basica">
+                <ul>
+                    <li><a href="{{ url_for("auxiliar") }}" >Esportes</a></li>
+                    <li><a href="{{ url_for("auxiliar") }}">Fé</a></li>
+                    <li><a href="{{ url_for("auxiliar") }}">Automobilismo</a></li>
+                    <li><a href="{{ url_for("auxiliar") }}">Moda</a></li>
+                    <li><a href="{{ url_for("auxiliar") }}">Cuidados</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="rodape">
+            <p><a href="{{ url_for("auxiliar") }}">Suporte</a></p>
+            <p>Copyright aleatório</p>
+        </footer>
+    </body>
+</html>
