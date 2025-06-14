@@ -1,8 +1,13 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .formulario {
     margin: 1em;
     padding: 1em;
     background-color: #801b0c;
-    display: flex;
     flex-direction: column;
     width: 20em;
     color: white;
@@ -27,7 +32,7 @@
     margin-bottom: 1em;
 }
 
-#opcoes button {
+#opcoes a {
     padding: 0.7em 1em;
     font-weight: bold;
     border-radius: 4px;
@@ -36,12 +41,9 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
-#opcoes button:hover {
+#opcoes a:hover {
     background-color: #a02a1c;
-}
-
-.oculto {
-    display: none;
 }
