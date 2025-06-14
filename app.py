@@ -13,3 +13,15 @@ def auxiliar():
 @app.route("/acesso")
 def acesso():
     return render_template("acesso.html")
+
+@app.route("/acesso/cadastro")
+def cadastro():
+    return render_template("cadastro.html")
+
+@app.route("/acesso/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/sobre")
+def sobre():
+    return render_template("sobre.html")
