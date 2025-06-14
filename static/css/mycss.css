@@ -1,4 +1,4 @@
-h1, h2, p, a, li {
+h1, h2, h3, p, a, li {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -34,6 +34,14 @@ header {
     margin: 1.5em 0.5em 0 0.5em;
 }
 
+#nome_site {
+    color: black;
+}
+
+#nome_site:hover {
+    color: #bccee1;
+}
+
 .login a {
     color: white;
     text-decoration: none;
@@ -41,7 +49,7 @@ header {
 }
 
 .login a:hover {
-    color: #007bff;
+    color: #bccee1;
 }
 
 .nav_basica ul {
@@ -60,7 +68,7 @@ header {
 }
 
 .nav_basica li a:hover {
-    color: #007bff;
+    color: #bccee1;
 }
 
 main {
@@ -70,7 +78,6 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
-    color: white;
 }
 
 .rodape{

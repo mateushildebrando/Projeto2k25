@@ -1,0 +1,34 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+main h2 {
+    align-self: flex-start;
+    padding: 0;
+    margin: 1em 1em 0 1em;
+    color: white;
+}
+
+main p {
+    align-self: flex-start;
+    padding: 0;
+    color: white;
+    margin: 0 1em 0 1em;
+}
+
+#about {
+    align-self: center;
+    padding: 1.6em 1em 1.6em 1em;
+    height: 60%;
+    width: 60%;
+    background-color: white;
+}
+
+#about p {
+    font-size: 1.2em;
+    text-align: justify;
+    text-indent: 2em;
+    color: black;
+}

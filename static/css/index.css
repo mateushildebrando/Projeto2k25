@@ -1,0 +1,44 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.subtitulo {
+    color: white;
+    text-align: center;
+}
+
+.criadores {
+    flex: 1;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.foto {
+    padding: 0;
+}
+
+.foto img {
+    width: 12em;
+    height: 15em;
+    margin: 0;
+}
+
+.foto p {
+    margin: 0;
+    padding: 0;
+}
+
+.foto a{
+    text-decoration: none;
+    font-size: 1.2em;
+    color: white;
+}
+
+.foto a:hover {
+    color: #bccee1;
+}
