@@ -11,7 +11,11 @@
         <header>
             <section class="login">
                 <h1><a id="nome_site" href="{{ url_for("home") }}">Index_base</a></h1>
-                <p><a href="{{ url_for("acesso") }}">Cadastro e Login</a></p>
+                {% if session.get("username") %}
+                    <p>{{session.get("username")}}</p>
+                {% else %}
+                <p><a href="{{ url_for("acesso") }}">Entrar</a></p>
+                {% endif %}
             </section>
             <nav class="nav_basica">
                 <ul>
