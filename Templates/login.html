@@ -9,9 +9,9 @@
 {%block content%}
 <section class="formulario">
         <h2>Login</h2>
-        <form method="post" action="/acesso/login/usuario">
-            <label for="login-email">E-mail:</label>
-            <input id="login-email" name="email" type="email" required />
+        <form method="post" action="{{url_for("loginUser")}}">
+            <label for="login-user">E-mail ou Username:</label>
+            <input id="login-user" name="login_user" type="text" required />
 
             <label for="login-password">Senha:</label>
             <input id="login-password" name="password" type="password" required />

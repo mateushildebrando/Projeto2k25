@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <link rel="icon" href="icone.ico" type="image/x-icon">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mycss.css') }}">
+        <script src="{{ url_for('static', filename='javascript/menuperfil.js') }}"></script>
+
         <meta charset="UTF-8">
         <title>{% block title %}Index_base{% endblock %}</title>
         {% block head %}{% endblock %}
@@ -11,8 +12,18 @@
         <header>
             <section class="login">
                 <h1><a id="nome_site" href="{{ url_for("home") }}">Index_base</a></h1>
-                {% if session.get("username") %}
-                    <p>{{session.get("username")}}</p>
+                {% if session.get("nome") %}
+                    <div class="usuario-logado">
+                        <button style="background: none; border: none; padding: 0;">
+                            <img class="menu-titulo" src="{{ session.get("foto_perfil") }}">
+                        </button>
+
+                        <div class="menu-opcoes">
+                            <a href="{{url_for("perfil") }}">Perfil</a>
+                            <a href="#">Configurações</a>
+                            <a href="{{url_for("logout") }}">Sair</a>
+                        </div>
+                    </div>
                 {% else %}
                 <p><a href="{{ url_for("acesso") }}">Entrar</a></p>
                 {% endif %}
