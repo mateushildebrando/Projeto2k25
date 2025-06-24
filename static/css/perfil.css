@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+span, h2, a, label {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #b50000;
+    width: 100%;
+    padding: 1em;
+    margin: 0;
+    align-items: center;
+}
+
+header a {
+    color: black;
+    text-decoration: none;
+}
+
+header img {
+    width: 2em;
+    height: 2em;
+    margin: 0 1em 0 0;
+}
+
+header span {
+    font-size: 1.5em;
+}
+
+header a:hover {
+    color: #bccee1;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 1.5em;
+    
+}
+
+
+.formulario {
+    background-color: rgb(234, 234, 234);
+    width: 80%;
+    height: 80%;
+    padding: 1.5em 1em;
+    align-self: center;
+}
+
+form button {
+    width: 15em;
+    height: 2em;
+    background-color: green;
+    color: white;
+    border-radius: 4px;
+    font-size: 1.2em;
+    align-self: center;
+    margin: 5em;
+}
+
+form button:hover {
+    background-color: rgb(76, 201, 76);
+}
+
+.informacoes {
+    display: flex;
+    gap: 3em;
+}
+
+.informacoes label {
+    font-size: 1.5em;
+    width: 5em;
+}
+
+input {
+    padding: 0.5em;
+    font-size: 1.2em;
+    border-radius: 4px;
+    border: none;
+}
+
+.form-container {
+    display: flex;
+    gap: 3em;
+    justify-content: space-between;
+}
+
+.form-esquerda, .form-direita {
+    flex: 1;
+}
+
+.form-esquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.form-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+.foto-perfil {
+    width: 10em;
+    height: 10em;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #aaa;
+}

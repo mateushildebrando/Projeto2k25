@@ -52,6 +52,51 @@ header {
     color: #bccee1;
 }
 
+.usuario-logado {
+    position: relative;
+    display: inline-block;
+    align-self: last baseline;
+    margin: 0.5em;
+}
+
+.usuario-logado button {
+    margin: 0.5em 1em 0 0;
+}
+
+.menu-titulo {
+    cursor: pointer;
+    font-weight: bold;
+    max-width: 3em;
+    max-height: 3em;
+    border-radius: 100%;
+    border: o.2em;
+    border-style: solid;
+    border-color: white;
+}
+
+.menu-opcoes {
+    display: none;
+    right: 0;
+    position: absolute;
+    background-color: #dbdbdb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border-radius: 6px;
+    margin-top: 4px;
+}
+
+.menu-opcoes a {
+    display: block;
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #000000;
+    transition: background-color 0.2s ease;
+}
+
+.menu-opcoes a:hover {
+    background-color: #a9b8ff;
+}
+
 .nav_basica ul {
     list-style: none;
     padding: 0;
