@@ -1,16 +1,13 @@
-// Função para mostrar o menu
 function mostrarMenu() {
     const menu = document.querySelector(".menu-opcoes");
     menu.style.display = "block";
 }
 
-// Função para ocultar o menu
 function ocultarMenu() {
     const menu = document.querySelector(".menu-opcoes");
     menu.style.display = "none";
 }
 
-// Alterna o menu ao clicar na imagem
 document.addEventListener("DOMContentLoaded", function () {
     const botaoPerfil = document.querySelector(".menu-titulo");
     const menu = document.querySelector(".menu-opcoes");
@@ -25,14 +22,71 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Fecha o menu ao clicar fora
         document.addEventListener("click", function () {
             ocultarMenu();
         });
 
-        // Impede o fechamento ao clicar dentro do menu
         menu.addEventListener("click", function (e) {
             e.stopPropagation();
         });
     }
 });
+
+function validacaoFormulario(cadastro) {
+  const form = document.getElementById(cadastro);
+
+  form.addEventListener("submit", function (event) {
+    let valido = true;
+
+    // Pegar campos
+    const nome = document.getElementById("nome");
+    const sobrenome = document.getElementById("sobrenome");
+    const username = document.getElementById("username");
+    const email = document.getElementById("email");
+    const senha = document.getElementById("password");
+
+
+    // Resetar mensagens
+    document.getElementById("erro_nome").style.display = "none";
+    document.getElementById("erro_sobrenome").style.display = "none";
+    document.getElementById("erro_username").style.display = "none";
+    document.getElementById("erro_email").style.display = "none";
+    document.getElementById("erro_senha").style.display = "none";
+
+
+    // Validar nome
+    if (nome.value.trim() === "") {
+      document.getElementById("erro_nome").style.display = "inline";
+      valido = false;
+    }
+
+    if (sobrenome.value.trim() === "") {
+      document.getElementById("erro_sobrenome").style.display = "inline";
+      valido = false;
+    }
+
+    if (username.value.trim() === "") {
+      document.getElementById("erro_username").style.display = "inline";
+      valido = false;
+    }
+
+    // Validar email
+    if (email.value.trim() === "" || 
+        !email.value.includes("@") || 
+        !email.value.includes(".com")
+    ) {
+    document.getElementById("erro_email").style.display = "inline";
+    valido = false;
+    }
+
+    if (senha.value.trim().length < 8) {
+    document.getElementById("erro_senha").style.display = "inline";
+    valido = false;
+    }
+
+    // Se não for válido, impedir envio
+    if (!valido) {
+      event.preventDefault();
+    }
+  });
+}
