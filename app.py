@@ -32,7 +32,6 @@ def novo_usuario():
 
         return redirect(url_for("login"))
 
-
 @app.route("/acesso/login")
 def login():
     return render_template("login.html")
@@ -100,10 +99,10 @@ def update_perfil():
                 nova_foto.save(caminho_foto)
 
                 # Atualiza no banco
-                usuario.foto_perfil = f"/{caminho_foto}"
+                usuario.foto = url_foto
 
                 # Atualiza na session
-                session["foto_perfil"] = f"/{url_foto}"
+                session["foto_perfil"] = url_foto
 
             # Atualiza os dados na session
             session["nome"] = novo_nome
@@ -121,3 +120,11 @@ def update_perfil():
 @app.route("/sobre")
 def sobre():
     return render_template("sobre.html")
+
+@app.route("/suporte")
+def suporte ():
+    return render_template('suporte.html')
+
+@app.route("/forum")
+def forum():
+    return render_template('forum.html')
