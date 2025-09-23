@@ -47,3 +47,7 @@ main {
 #opcoes a:hover {
     background-color: #a02a1c;
 }
+
+.erro {
+    display: none;
+}
