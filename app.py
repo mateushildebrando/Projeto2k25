@@ -31,8 +31,8 @@ def login():
 def loginUser():
     usuario = autenticar_usuario(request.form)
     if usuario:
-        session.update(usuario)  # já retorna o dicionário pronto
-        return redirect(url_for("home"))
+        session.update(usuario)
+        return redirect(url_for("perfil"))
     flash("Email ou senha incorretos.", "error")
     return redirect(url_for("login"))
 
@@ -56,8 +56,12 @@ def sobre():
     return render_template("sobre.html")
 
 @app.route("/suporte")
-def suporte ():
+def suporte():
     return render_template('suporte.html')
+
+@app.route("/suporte/contatosuporte", methods=["POST"])
+def suporteContato():
+    mensagem_suporte(request.form)
 
 @app.route("/forum")
 def forum():
