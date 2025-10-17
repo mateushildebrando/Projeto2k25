@@ -1,0 +1,108 @@
+/* ================================
+   ESTILO PARA PÁGINA DE CUIDADOS PESSOAIS
+   ================================ */
+
+body {
+    background-color: #000;
+    color: #f2f2f2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 🚫 sem scroll lateral */
+    overflow-y: auto;   /* ✅ scroll vertical */
+}
+
+/* 🔳 Retângulo horizontal */
+.cuidados-container {
+    width: 100%;
+    min-height: 85vh;
+    background-color: #111;
+    border-top: 3px solid #ff0000;
+    border-bottom: 3px solid #ff0000;
+    box-shadow: inset 0 0 30px rgba(0, 191, 255, 0.25);
+    padding: 60px 10%;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho */
+.cuidados-container h1 {
+    text-align: center;
+    font-size: 2.4em;
+    margin-bottom: 40px;
+    color: #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Subtítulos */
+.cuidados-container h2 {
+    color: #ff0000;
+    margin-top: 35px;
+    margin-bottom: 12px;
+    font-size: 1.5em;
+}
+
+/* Subtítulos menores */
+.cuidados-container h3 {
+    color: #ff0000;
+    margin-top: 25px;
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+/* Texto */
+.cuidados-container p {
+
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Listas */
+.cuidados-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.cuidados-container li {
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px 18px;
+    border-radius: 10px;
+    border-left: 4px solid #ff0000;
+    font-size: 1.1rem;
+}
+
+/* Destaques */
+.cuidados-container strong {
+    color: #fff;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #111;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ff0000;
+    border-radius: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .cuidados-container {
+        padding: 30px 25px;
+        font-size: 1rem;
+    }
+
+    .cuidados-container h1 {
+        font-size: 1.8em;
+    }
+
+    .cuidados-container h2 {
+        font-size: 1.2em;
+    }
+}
