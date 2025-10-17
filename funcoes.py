@@ -17,12 +17,10 @@ def criar_usuario(form):
     try:
         db.session.add(novo_usuario)
         db.session.commit()
-        print(f"✅ Usuário '{username}' criado com sucesso!")
+        
     except Exception as e:
         db.session.rollback()
-        print(f"❌ Erro ao criar usuário: {e}")
-
-
+        
 def autenticar_usuario(form):
     login_usuario = form.get("login_user")
     senha_raw = form.get("password")

@@ -6,9 +6,25 @@ from funcoes import *
 def home():
     return render_template("index.html")
 
-@app.route("/auxiliar")
-def auxiliar():
-    return render_template("auxiliar.html")
+@app.route("/fe")
+def fe():
+    return render_template("fe.html")
+
+@app.route("/cuidados")
+def cuidados():
+    return render_template("cuidados.html")
+
+@app.route("/esportes")
+def esportes():
+    return render_template("esportes.html")
+
+@app.route("/moda")
+def moda():
+    return render_template("moda_masculina.html")
+
+@app.route("/automobilismo")
+def automobilismo():
+    return render_template("automobilismo.html")
 
 @app.route("/acesso")
 def acesso():
@@ -57,12 +73,22 @@ def sobre():
 
 @app.route("/suporte")
 def suporte():
-    return render_template('suporte.html')
-
+    if session:
+        return render_template('suporte.html')
+    else:
+        flash("Você precisa estar logado para acionar o suporte!")
+        return redirect(url_for("login"))
+        
 @app.route("/suporte/contatosuporte", methods=["POST"])
 def suporteContato():
     mensagem_suporte(request.form)
 
+    flash('Email enviado com sucesso!')
+    return render_template('suporte.html')
+       
 @app.route("/forum")
 def forum():
     return render_template('forum.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
