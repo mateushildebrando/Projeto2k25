@@ -3,7 +3,7 @@
     <head>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
         <script src="{{ url_for('static', filename='javascript/base.js') }}"></script>
-
+        
         <meta charset="UTF-8">
         <title>{% block title %}Man's Trail{% endblock %}</title>
         {% block head %}{% endblock %}
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                 {% else %}
-                <p><a href="{{ url_for("acesso") }}">Entrar</a></p>
+                <p><a href="{{ url_for("login") }}">Entrar</a></p>
                 {% endif %}
             </section>
             <nav class="nav_basica">
@@ -41,22 +41,22 @@
         </header>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <div class="flash-container">
+            <div class="flash-container">
                 {% for msg in messages %}
                     <input type="checkbox" id="close-{{ loop.index }}">
                     <div class="flash-box">
-                    <span>{{ msg }}</span>
-                    <label for="close-{{ loop.index }}" class="flash-close">×</label>
+                        <span>{{ msg }}</span>
+                        <label for="close-{{ loop.index }}" class="flash-close">×</label>
                     </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-        {% endwith %}
-        <main>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+                <main>
             {% block content %}{% endblock %}
         </main>
         <footer class="rodape">
-            <p><a href="{{ url_for("suporte") }}">Suporte</a></p>
+            <p>Precisa de ajuda? entre em contato: <a href="{{ url_for("suporte") }}">Suporte</a></p>
             <p>Copyright aleatório</p>
         </footer>
     </body>
