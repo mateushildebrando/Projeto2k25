@@ -26,24 +26,25 @@ def moda():
 def automobilismo():
     return render_template("automobilismo.html")
 
-@app.route("/acesso")
-def acesso():
-    return render_template("acesso.html")
+@app.route("/sobre")
+def sobre():
+    return render_template("sobre.html")
 
-@app.route("/acesso/cadastro")
+@app.route("/cadastro")
 def cadastro():
     return render_template("cadastro.html")
 
-@app.route("/acesso/cadastro/novo_usuario", methods=["POST"])
+@app.route("/cadastro/novo_usuario", methods=["POST"])
 def novo_usuario():
     criar_usuario(request.form)
+    flash('Cadastro bem sucedido!')
     return redirect(url_for("login"))
 
-@app.route("/acesso/login")
+@app.route("/login")
 def login():
     return render_template("login.html")
 
-@app.route("/acesso/login/usuario", methods=["POST"])
+@app.route("/login/usuario", methods=["POST"])
 def loginUser():
     usuario = autenticar_usuario(request.form)
     if usuario:
@@ -67,9 +68,36 @@ def update_perfil():
     flash(msg, "success" if sucesso else "error")
     return redirect(url_for("perfil" if sucesso else "login"))
 
-@app.route("/sobre")
-def sobre():
-    return render_template("sobre.html")
+@app.route('/esqueci_senha')
+def esqueci_senha():
+    return render_template('esqueci_senha.html')
+
+
+@app.route('/esqueci_senha/nova_senha', methods=['POST'])
+def email_redefinicao():
+    email_solicitado(request.form)
+
+    flash('Verifique seu email!')
+    return redirect(url_for('login'))
+
+@app.route('/redefinir_senha/<token>')
+def formNovaSenha(token):
+    return render_template('novaSenha.html', token=token)
+
+@app.route('/redefinir_senha/nova_senha/<token>', methods=['POST'])
+def redefinir_senha(token):
+    resultado = encontrarUsuarioEToken(token)
+    if resultado is None:
+        flash('Usuário ou token não encontrado!')
+        return redirect(url_for('cadastro'))
+    if isinstance(resultado, tuple):
+        usuario, token_verificado = resultado
+    else:
+        return resultado
+    
+    verificacao = update_senha(request.form, usuario, token_verificado)
+    if verificacao:
+        return verificacao
 
 @app.route("/suporte")
 def suporte():
@@ -84,11 +112,7 @@ def suporteContato():
     mensagem_suporte(request.form)
 
     flash('Email enviado com sucesso!')
-    return render_template('suporte.html')
+    return redirect(url_for('suporte'))
        
-@app.route("/forum")
-def forum():
-    return render_template('forum.html')
-
 if __name__ == '__main__':
     app.run(debug=True)

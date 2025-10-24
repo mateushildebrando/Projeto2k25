@@ -1,6 +1,6 @@
 from config import *
-class UsuarioTeste(db.Model):
-    __tablename__ = 'usuarios_teste'
+class Usuario(db.Model):
+    __tablename__ = 'usuario'
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
@@ -11,7 +11,14 @@ class UsuarioTeste(db.Model):
     senha = db.Column(db.String(200), nullable=False)
 
     def __repr__(self):
-        return f'<UsuarioTeste {self.username}>'
+        return f'<Usuario {self.username}>'
+
+class Token(db.Model):
+    __tablename__ = 'token'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.TEXT, nullable=False)
+    token_ativo = db.Column(db.TEXT, nullable=False)
 
 with app.app_context():
     db.create_all()
