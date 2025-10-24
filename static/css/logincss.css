@@ -1,49 +1,121 @@
-main {
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+main.auth-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 .formulario {
-    margin: 1em;
-    padding: 1em;
-    background-color: #801b0c;
+    background: white;
+    margin: 2em 0 2em 0;
+    border-radius: 10px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
     flex-direction: column;
-    width: 20em;
-    color: white;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
     gap: 1em;
+    color: #333;
+}
+
+.formulario h2 {
+    color: #1e3c72;
+    margin-bottom: 1rem;
 }
 
 .formulario form {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.formulario input, .formulario button {
-    padding: 0.7em;
-    border-radius: 4px;
-    border: none;
-}
-
-#opcoes {
+.input-group {
     display: flex;
-    gap: 1em;
-    margin-bottom: 1em;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
-#opcoes a {
-    padding: 0.7em 1em;
-    font-weight: bold;
-    border-radius: 4px;
-    background-color: #801b0c;
+.input-icon {
+    background: #2a5298;
+    color: white;
+    padding: 0.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    padding: 0.7em;
+    width: 100%;
+    font-size: 1em;
+}
+
+.formulario button {
+    background-color: #2a5298;
     color: white;
     border: none;
+    border-radius: 6px;
+    padding: 0.8em;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s;
-    text-decoration: none;
+    transition: background 0.3s ease;
 }
 
-#opcoes a:hover {
-    background-color: #a02a1c;
+.formulario button:hover {
+    background-color: #1e3c72;
+}
+
+.login-icon {
+    width: 80px;
+    height: 80px;
+    background: #2a5298;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-icon i {
+    font-size: 36px;
+    color: white;
+}
+
+.switch-text {
+    text-align: center;
+    margin-top: 0.5em;
+}
+
+.switch-text a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.switch-text a:hover {
+    text-decoration: underline;
+}
+
+/* mensagens de erro */
+.erro {
+    display: none;
+    color: white;
+    background-color: #f44336;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
 }

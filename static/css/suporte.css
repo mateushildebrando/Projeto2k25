@@ -1,16 +1,89 @@
-#nome{
-    margin-left: 3em;
-    height: 20em;
-    width: 100em;
+#nome {
+  margin-left: 3em;
+  height: 20em;
+  width: 100em;
 }
-h2, label {
-    color: white;
+h2,
+label {
+  color: white;
 }
 
+.formulario {
+  background-color: #212121; /* fundo preto */
+  color: white;
+  border-radius: 12px; /* bordas arredondadas */
+  padding: 2em 3em;
+  margin: 5em auto;
+  width: fit-content;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* sombra suave */
+  text-align: center;
+}
+
+/* Estilo dos inputs */
+#mensagem,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  height: 3em;
+  border-radius: 8px;
+  border: 2px solid #c62828; /* borda vermelha */
+  padding: 0.7em;
+  margin-bottom: 1em;
+  background-color: #333333; /* fundo mais escuro para os inputs */
+  color: white;
+  font-size: 1em;
+}
+
+#mensagem:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #ff5722; /* borda vermelha brilhante ao focar */
+  outline: none;
+}
+
+/* Estilo do botão */
 .formulario button {
-    width: 8em;
-    padding: 0.7em;
-    border-radius: 4px;
-    border: none;
-    margin: 2em 0 0 0;
+  width: 10em;
+  padding: 1em;
+  border-radius: 8px;
+  border: none;
+  margin-top: 1.5em;
+  background: linear-gradient(45deg, #c62828, #ff5722); /* gradiente vermelho */
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.formulario button:hover {
+  background: linear-gradient(
+    45deg,
+    #ff5722,
+    #c62828
+  ); /* muda a direção do gradiente ao passar o mouse */
+}
+
+/* Mensagem de erro */
+.erro {
+  display: none;
+  color: #ffcccb; /* cor de erro suave */
+  font-size: 0.9em;
+  margin-top: 1em;
+}
+
+/* Campo de mensagem com várias linhas (textarea) */
+textarea {
+  height: 6em; /* altura ajustada para permitir várias linhas de texto */
+  resize: vertical; /* permite redimensionamento */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+  border-color: #ff5722; /* borda vermelha brilhante ao focar */
+  outline: none;
 }
