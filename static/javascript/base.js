@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function validacaoFormulario(cadastro) {
+function validacaoCadastro(cadastro) {
   const form = document.getElementById(cadastro);
 
   form.addEventListener("submit", function (event) {
@@ -44,18 +44,16 @@ function validacaoFormulario(cadastro) {
     const username = document.getElementById("username");
     const email = document.getElementById("email");
     const senha = document.getElementById("password");
-    const mensagem = document.getElementById("mensagem")
-
-
+    
+    
     // Resetar mensagens
     document.getElementById("erro_nome").style.display = "none";
     document.getElementById("erro_sobrenome").style.display = "none";
     document.getElementById("erro_username").style.display = "none";
     document.getElementById("erro_email").style.display = "none";
     document.getElementById("erro_senha").style.display = "none";
-    document.getElementById("erro_mensagem").style.display = "none";
-
-
+    
+    
     // Validar nome
     if (nome.value.trim() === "") {
       document.getElementById("erro_nome").style.display = "inline";
@@ -76,23 +74,19 @@ function validacaoFormulario(cadastro) {
     if (email.value.trim() === "" || 
         !email.value.includes("@") || 
         !email.value.includes(".com")
-    ) {
+      ) {
     document.getElementById("erro_email").style.display = "inline";
     valido = false;
     }
-
+    
     if (senha.value.trim().length < 8) {
-    document.getElementById("erro_senha").style.display = "inline";
-    valido = false;
-    }
-
-if (mensagem.value.trim() === "") {
-      document.getElementById("erro_mensagem").style.display = "inline";
+      document.getElementById("erro_senha").style.display = "inline";
       valido = false;
-    }
-
-    // Se não for válido, impedir envio
-    if (!valido) {
+  }
+  
+  
+  // Se não for válido, impedir envio
+  if (!valido) {
       event.preventDefault();
     }
   });
