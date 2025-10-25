@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+
+{% block title%}Página Inicial{%endblock%}
+
+{%block head%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{%endblock%}
+
+{%block content%}
+        <h2>Bem-Vindo ao site Man's Trail<h2>
+
+        <h3>Apoie nossos criadores</h3>
+    </section>
+
+    <section class="criadores">
+        <div class="foto">
+            <img src="{{ url_for('static', filename='imagens/artur.jpg') }}" alt="Artur">
+            <p><a href="https://www.instagram.com/artpagel_" target="_blank">@artpagel_</a></p>
+        </div>
+
+        <div class="foto">    
+            <img src="{{ url_for('static', filename='imagens/danilo.jpg') }}" alt="Danilo">
+            <p><a href="https://www.instagram.com/danilo.rsx" target="_blank">@danilo.rsx</a></p>
+        </div>
+
+        <div class="foto">
+            <img src="{{ url_for('static', filename='imagens/guilherme.jpg') }}" alt="Guilherme">
+            <p><a href="https://www.instagram.com/ggermano565" target="_blank">@ggermano565</a></p>
+        </div>
+
+        <div class="foto">
+            <img src="{{ url_for('static', filename='imagens/mateus.jpg') }}" alt="Mateus">
+            <p><a href="https://www.instagram.com/mateushildebrando" target="_blank">@mateushildebrando</a></p>
+        </div>
+    </section>
+{%endblock%}

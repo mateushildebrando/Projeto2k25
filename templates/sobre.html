@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+
+{%block title%}Sobre{%endblock%}
+
+{%block head%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sobre.css') }}">
+{%endblock%}
+
+{%block content%}
+<h2>Sobre o site</h2>
+<p>Última atualização: 14/06/2025</p>
+<article id="about">
+    <p>
+    Esse site é um projeto de estudantes do IFC campus Blumenau que cursam o 3º ano de informática no ano de 2025.
+    </p>
+    <p>
+    A proposta do trabalho é uma página web focada no autodesenvolvimento e aprimoramento masculino. Inicialmente a idéia é cobrir 5 áreas principais: Fé, cuidados, esportes, moda e automobilismo, porventura até o fim de ano os temas podem mudar ou serem aprimorados.
+    </p>
+    <p>
+    Cada área citada acima, terá artigos de outras páginas, textos autorais e notícias atualizadas pelos próprios criadores. Por conta disso, trabalhamos firmemente para criar um Suporte ideal, caso alguém tenha uma denúncia sobre o conteúdo, dúvida ou sugestão.
+    </p>
+    <p>
+    O site também contará com um fórum, sistema de favoritar, junto do cadastros e login, para a utilização de banco de dados.
+    </p>
+    <p>
+    Utilizamos as seguintes linguagens: Html e Css para criação dos templates, e Python para utilizar o flask e redirecionar as páginas de forma eficiente. Até o momento.
+    </p>
+</article>
+{%endblock%}
