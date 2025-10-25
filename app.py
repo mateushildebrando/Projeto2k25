@@ -128,4 +128,4 @@ def suporteContato():
     return redirect(url_for('suporte'))
        
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
