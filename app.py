@@ -33,13 +33,20 @@ def sobre():
 @app.route("/cadastro")
 def cadastro():
     return render_template("cadastro.html")
-
+  
 @app.route("/cadastro/novo_usuario", methods=["POST"])
 def novo_usuario():
-    criar_usuario(request.form)
-    flash('Cadastro bem sucedido!')
-    return redirect(url_for("login"))
+    resultado = criar_usuario(request.form)
+    if resultado.get("status") == "sucesso":
+        flash("Verifique seu email para confirmar a conta!")
+    else:
+        flash("Erro ao enviar o email de confirmação.")
+    return redirect(url_for("home"))
 
+@app.route("/confirmarEmail/<token>")
+def confirmarEmail(token):
+    return ativar_conta(token)
+    
 @app.route("/login")
 def login():
     return render_template("login.html")
@@ -50,8 +57,8 @@ def loginUser():
     if usuario:
         session.update(usuario)
         return redirect(url_for("perfil"))
-    flash("Email ou senha incorretos.", "error")
-    return redirect(url_for("login"))
+    else:
+        return redirect(url_for("login"))
 
 @app.route("/logout")
 def logout():
@@ -67,6 +74,12 @@ def update_perfil():
     sucesso, msg = atualizar_perfil(request.form, request.files, session)
     flash(msg, "success" if sucesso else "error")
     return redirect(url_for("perfil" if sucesso else "login"))
+
+@app.route('/excluir_conta')
+def excluir_conta():
+    exclusao_permanente()
+    flash('Usuário deletado!')
+    return redirect(url_for('home'))
 
 @app.route('/esqueci_senha')
 def esqueci_senha():

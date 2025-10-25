@@ -14,20 +14,77 @@ def criar_usuario(form):
     senha_raw = form.get("password")
     senha = generate_password_hash(senha_raw)
     foto = "/static/imagens/fotosperfil/default.jpg"
+    ativo = False
 
-    if not nome or not sobrenome or not username or not email or not senha:
+    if not all([nome, sobrenome, username, email, senha_raw]):
         flash("Ocorreu um erro. Tente novamente!")
         return redirect(url_for("cadastro"))
 
-    novo_usuario = Usuario(nome=nome,sobrenome=sobrenome, username=username, email=email, senha=senha, foto=foto)
+    token = str(uuid.uuid4())
+       
+    novo_usuario = Usuario(nome=nome,sobrenome=sobrenome, username=username, email=email, senha=senha, foto=foto, ativo=ativo)
+    novo_token = TokenEmail(email=email, token_ativo=token)
 
     try:
         db.session.add(novo_usuario)
+        db.session.add(novo_token)
         db.session.commit()
         
     except Exception as e:
         db.session.rollback()
+
+    link = url_for ('confirmarEmail', token=token, _external=True)
+
+    msg = MIMEMultipart()
+    msg['From'] = emailsuporte
+    msg['To'] = email
+    msg['Subject'] = f"Confirmação de Email"
+    
+    mensagemHTML = f"""
+        <h2>Confirmação de email</h2>
+        <p>Clique no link abaixo para Confirmar seu email:</p>
+        <a href="{link}">{link}</a>
+    """
+    msg.attach(MIMEText(mensagemHTML, "html"))
+
+    try:
+        with smtplib.SMTP('smtp.gmail.com', 587) as servidor:
+            servidor.ehlo()
+            servidor.starttls()
+            servidor.ehlo()
+            servidor.login(emailsuporte, senhasuporte)
+            servidor.send_message(msg)
+            return {"status": "sucesso", "mensagem": "Email enviado com sucesso!"}
+    except Exception as e:
+        print("Erro ao enviar email:", e)
+        return {"status": "erro", "mensagem": str(e)}
         
+    
+def ativar_conta(token):
+    token_obj = TokenEmail.query.filter(
+        (TokenEmail.token_ativo == token)
+    ).first()
+
+    if not token_obj:
+        flash('Token inválido ou expirado!')
+        return redirect(url_for('cadastro'))
+    
+    usuario_obj = Usuario.query.filter_by(email=token_obj.email).first()
+
+
+    if not usuario_obj:
+        flash('Usuário não encontrado!')
+        return redirect(url_for('cadastro'))
+    
+    else:
+        usuario_obj.ativo = True
+        db.session.delete(token_obj)
+        db.session.commit()
+        flash('Cadastro realizado com sucesso!')
+        return redirect(url_for('login'))
+
+
+
 def autenticar_usuario(form):
     login_usuario = form.get("login_user")
     senha_raw = form.get("password")
@@ -37,6 +94,14 @@ def autenticar_usuario(form):
         (Usuario.username == login_usuario)
     ).first()
 
+    if not usuario:
+        flash('Usuário não encontrado!')
+        return None
+    
+    if usuario.ativo == False:
+        flash('Usuario não foi ativo, verifique seu email!')
+        return None
+
     if usuario and check_password_hash(usuario.senha, senha_raw):
         return {
             "nome": usuario.nome,
@@ -45,7 +110,9 @@ def autenticar_usuario(form):
             "email": usuario.email,
             "foto_perfil": usuario.foto
         }
-    return None
+    else:
+        flash("Email ou senha incorretos.", "error")
+        return None
 
 def atualizar_perfil(form, files, session):
     novo_nome = form.get("nome")
@@ -83,6 +150,13 @@ def atualizar_perfil(form, files, session):
 
     return True, "Perfil atualizado com sucesso!"
     
+def exclusao_permanente():
+    email = session['email']    
+    usuario = Usuario.query.filter_by(email=email).first()
+    session.clear()
+    db.session.delete(usuario)
+    db.session.commit()
+
 def mensagem_suporte(form):
 
     userremetente = session.get('username')
@@ -109,7 +183,7 @@ def email_solicitado(form):
     email = form.get('email')
     token = str(uuid.uuid4())
     
-    novo_token = Token(email=email, token_ativo=token)
+    novo_token = TokenSenha(email=email, token_ativo=token)
 
     try:
         db.session.add(novo_token)
@@ -150,8 +224,8 @@ def encontrarUsuarioEToken(token):
     email_session = session.get('email')
     
     if not email_session:
-        token_obj =  Token.query.filter(
-            (Token.token_ativo == token)).first()
+        token_obj =  TokenSenha.query.filter(
+            (TokenSenha.token_ativo == token)).first()
         email_session = token_obj.email
     
     usuario = Usuario.query.filter(
@@ -160,8 +234,8 @@ def encontrarUsuarioEToken(token):
     if not usuario:
         return 'Usuário não encontrado.'
         
-    token_verificado = Token.query.filter(
-        (Token.token_ativo == token)).first()
+    token_verificado = TokenSenha.query.filter(
+        (TokenSenha.token_ativo == token)).first()
     if not token_verificado:
         return 'Token inválido ou expirado.'
     

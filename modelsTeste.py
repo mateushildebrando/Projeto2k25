@@ -9,12 +9,17 @@ class Usuario(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     foto = db.Column(db.String(200), nullable=False, default='/static/imagens/fotosperfil/default.jpg')
     senha = db.Column(db.String(200), nullable=False)
+    ativo = db.Column(db.Boolean, nullable=False)
 
-    def __repr__(self):
-        return f'<Usuario {self.username}>'
+class TokenEmail(db.Model):
+    __tablename__ = 'tokenEmail'
 
-class Token(db.Model):
-    __tablename__ = 'token'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.TEXT, nullable=False)
+    token_ativo = db.Column(db.TEXT, nullable=False)
+
+class TokenSenha(db.Model):
+    __tablename__ = 'tokenSenha'
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.TEXT, nullable=False)
