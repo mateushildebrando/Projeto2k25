@@ -3,11 +3,11 @@
 {% block title %}Automobilismo{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/automobilismo.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/geral.css') }}">
 {% endblock %}
 
 {% block content %}
-<article class="auto-container">
+<article class="section-container">
     <h1>Automobilismo — Velocidade, técnica e mentalidade de alto desempenho</h1>
 
     <section>
@@ -62,13 +62,27 @@
         <h2>6. Conclusão — Chamada à Ação</h2>
         <p>O automobilismo é mais do que esporte — é filosofia de vida. Ele ensina que controle é poder, foco é combustível e constância é vitória.</p>
         <p>Quer evoluir como homem? Pense como um piloto:</p>
+
         <ul>
-            <li>Planeje antes de acelerar.</li>
-            <li>Ajuste seu “carro” — corpo e mente.</li>
-            <li>Jamais perca o traçado do seu propósito.</li>
+            {% for topico in topicos %}
+                <li>
+                    <a href="{{ topico.link }}" target="_blank">{{ topico.texto }}</a>
+                
+                    <span class="fav-icon"
+                          data-url="{{ url_for('favoritar', id_topico=topico.id) }}">
+                        {% if topico.id in favoritos_ids %}
+                            ❤️
+                        {% else %}
+                            ♡
+                        {% endif %}
+                    </span>
+                </li>
+            {% endfor %}
         </ul>
+
         <p>O verdadeiro sucesso não é cruzar a linha de chegada — é dominar o percurso com coragem, técnica e fé.</p>
         <p>🏁 Acelere sua evolução. Viva como um piloto.</p>
     </section>
+
 </article>
 {% endblock %}

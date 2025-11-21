@@ -3,11 +3,11 @@
 {% block title %}Fé{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/fe.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/geral.css') }}">
 {% endblock %}
 
 {% block content %}
-<article class="fe-container">
+<article class="section-container">
     <h1>Fé — A força invisível do homem cristão</h1>
 
     <section>
@@ -31,10 +31,20 @@
         <h2>4. Solução — O conteúdo principal</h2>
         <h3>4.1 Como fortalecer sua fé</h3>
         <ul>
-            <li><strong>Leitura bíblica:</strong> a fé vem pelo ouvir a Palavra (Romanos 10:17).</li>
-            <li><strong>Oração constante:</strong> fale com Deus com sinceridade, não formalidade.</li>
-            <li><strong>Comunhão:</strong> Provérbios 27:17 — “Assim como o ferro afia o ferro, o homem afia o seu companheiro.”</li>
-            <li><strong>Obediência:</strong> fé verdadeira gera ação e transformação.</li>
+            {% for topico in topicos %}
+                <li>
+                    <a href="{{ topico.link }}" target="_blank">{{ topico.texto }}</a>
+                
+                    <span class="fav-icon"
+                          data-url="{{ url_for('favoritar', id_topico=topico.id) }}">
+                        {% if topico.id in favoritos_ids %}
+                            ❤️
+                        {% else %}
+                            ♡
+                        {% endif %}
+                    </span>
+                </li>
+            {% endfor %}
         </ul>
 
         <h3>4.2 Fé e masculinidade</h3>

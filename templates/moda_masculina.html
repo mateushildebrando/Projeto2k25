@@ -3,11 +3,11 @@
 {% block title %}Moda Masculina{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/moda_masculina.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/geral.css') }}">
 {% endblock %}
 
 {% block content %}
-<article class="moda-container">
+<article class="section-container">
     <h1>Por que seu estilo te deixa invisível — e como mudar isso com streetwear, sport life e old money</h1>
 
     <section>
@@ -31,9 +31,20 @@
         <h2>4. Solução — O Conteúdo Principal</h2>
         <p>Três estéticas masculinas funcionam bem no Brasil e ajudam a construir uma imagem de valor:</p>
         <ul>
-            <li><strong>Streetwear:</strong> mistura conforto e atitude. Peças-chave: calça cargo, camiseta oversized, boné aba curva, jaqueta corta-vento, tênis impactante. Acessórios: correntes prateadas, shoulder bag, anéis.</li>
-            <li><strong>Sport Life:</strong> visual leve, atlético e versátil. Peças-chave: camiseta dry fit, calça jogger, moletom neutro, tênis esportivo limpo. Valoriza o corpo e transmite disciplina.</li>
-            <li><strong>Old Money:</strong> elegância discreta. Peças-chave: camisa social branca, calça de alfaiataria, mocassim, polo ou suéter, cores neutras e bom caimento.</li>
+            {% for topico in topicos %}
+                <li>
+                    <a href="{{ topico.link }}" target="_blank">{{ topico.texto }}</a>
+                
+                    <span class="fav-icon"
+                          data-url="{{ url_for('favoritar', id_topico=topico.id) }}">
+                        {% if topico.id in favoritos_ids %}
+                            ❤️
+                        {% else %}
+                            ♡
+                        {% endif %}
+                    </span>
+                </li>
+            {% endfor %}
         </ul>
     </section>
 

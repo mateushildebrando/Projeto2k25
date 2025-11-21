@@ -4,11 +4,11 @@
 {% block title %}Esportes{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/esporte.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/geral.css') }}">
 {% endblock %}
 
 {% block content %}
-<article class="esporte-container">
+<article class="section-container">
     <h1>Esporte — Corpo forte, mente afiada</h1>
 
     <section>
@@ -29,11 +29,20 @@
     <section>
         <h2>4. Solução — O conteúdo principal</h2>
         <ul>
-            <li><strong>Futebol:</strong> melhora o condicionamento e a tomada de decisão.</li>
-            <li><strong>Basquete:</strong> desenvolve força, agilidade e raciocínio.</li>
-            <li><strong>Calistenia:</strong> fortalece articulações e postura.</li>
-            <li><strong>Corrida:</strong> acessível e eficaz para liberar endorfinas.</li>
-            <li><strong>Musculação:</strong> essencial para força e prevenção de lesões.</li>
+            {% for topico in topicos %}
+                <li>
+                    <a href="{{ topico.link }}" target="_blank">{{ topico.texto }}</a>
+                
+                    <span class="fav-icon"
+                          data-url="{{ url_for('favoritar', id_topico=topico.id) }}">
+                        {% if topico.id in favoritos_ids %}
+                            ❤️
+                        {% else %}
+                            ♡
+                        {% endif %}
+                    </span>
+                </li>
+            {% endfor %}
         </ul>
         <p>Além dos benefícios físicos, o esporte reduz o estresse, melhora o foco e fortalece a disciplina e a socialização.</p>
     </section>
