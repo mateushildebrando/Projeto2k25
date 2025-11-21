@@ -32,6 +32,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const favIcons = document.querySelectorAll(".fav-icon");
+
+    favIcons.forEach(icon => {
+        icon.addEventListener("click", async function () {
+
+            const url = icon.dataset.url;
+
+            const resp = await fetch(url, {
+                method: "POST"
+            });
+
+            if (resp.status === 401) {
+                window.location.href = "/login";
+                return;
+            }
+
+            const data = await resp.json();
+
+            if (data.favorito === true) {
+                icon.textContent = "❤️";
+                icon.classList.add("favorited");
+            } else {
+                icon.textContent = "♡";
+                icon.classList.remove("favorited");
+            }
+        });
+    });
+});
+
+
+
+
 function validacaoCadastro(cadastro) {
   const form = document.getElementById(cadastro);
 
