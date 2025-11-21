@@ -8,23 +8,92 @@ def home():
 
 @app.route("/fe")
 def fe():
-    return render_template("fe.html")
+    usuario_id = session.get("id")
+    topicos = Topico.query.filter_by(categoria="fe").all()
+
+    favoritos_ids = [
+        fav.topico_id
+        for fav in Favorito.query.filter_by(usuario_id=usuario_id).all()
+    ]
+
+    return render_template("fe.html",
+                           topicos=topicos,
+                           favoritos_ids=favoritos_ids)
 
 @app.route("/cuidados")
 def cuidados():
-    return render_template("cuidados.html")
+    usuario_id = session.get("id")
+    topicos = Topico.query.filter_by(categoria="cuidados").all()
+
+    favoritos_ids = [
+        fav.topico_id
+        for fav in Favorito.query.filter_by(usuario_id=usuario_id).all()
+    ]
+
+    return render_template("cuidados.html",
+                           topicos=topicos,
+                           favoritos_ids=favoritos_ids)
 
 @app.route("/esportes")
 def esportes():
-    return render_template("esportes.html")
+    usuario_id = session.get("id")
+    topicos = Topico.query.filter_by(categoria="esportes").all()
+
+    favoritos_ids = [
+        fav.topico_id
+        for fav in Favorito.query.filter_by(usuario_id=usuario_id).all()
+    ]
+
+    return render_template("esportes.html",
+                           topicos=topicos,
+                           favoritos_ids=favoritos_ids)
 
 @app.route("/moda")
 def moda():
-    return render_template("moda_masculina.html")
+    usuario_id = session.get("id")
+    topicos = Topico.query.filter_by(categoria="moda").all()
+
+    favoritos_ids = [
+        fav.topico_id
+        for fav in Favorito.query.filter_by(usuario_id=usuario_id).all()
+    ]
+
+    return render_template("moda_masculina.html",
+                           topicos=topicos,
+                           favoritos_ids=favoritos_ids)
 
 @app.route("/automobilismo")
 def automobilismo():
-    return render_template("automobilismo.html")
+    usuario_id = session.get("id")
+    topicos = Topico.query.filter_by(categoria="automobilismo").all()
+
+    favoritos_ids = [
+        fav.topico_id
+        for fav in Favorito.query.filter_by(usuario_id=usuario_id).all()
+    ]
+
+    return render_template("automobilismo.html",
+                           topicos=topicos,
+                           favoritos_ids=favoritos_ids)
+
+
+@app.route("/favoritos")
+def favoritos():
+    usuario_id = session.get('id')
+
+    if usuario_id is None:
+        flash("Faça login para ver seus favoritos.")
+        return redirect(url_for("login"))
+    favoritos = Favorito.query.filter_by(usuario_id=usuario_id).all()
+    return render_template("favoritos.html", favoritos=favoritos)
+
+
+
+@app.route("/favoritar/<int:id_topico>", methods=["POST"])
+def favoritar(id_topico):
+    return favoritamento(id_topico)
+
+
 
 @app.route("/sobre")
 def sobre():

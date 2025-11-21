@@ -104,6 +104,7 @@ def autenticar_usuario(form):
 
     if usuario and check_password_hash(usuario.senha, senha_raw):
         return {
+            "id": usuario.id,
             "nome": usuario.nome,
             "sobrenome": usuario.sobrenome,
             "username": usuario.username,
@@ -262,3 +263,29 @@ def update_senha(form, usuario, token_verificado):
         session.clear()
         flash('Senha redefinida com sucesso!')
         return redirect(url_for('login'))
+    
+def favoritamento(id_topico):
+    id_usuario = session.get('id')
+
+    if id_usuario is None:
+        flash("Você precisa de login para poder favoritar")
+        return jsonify({"erro": "login necessário"}), 401
+
+    topico = Topico.query.get(id_topico)
+    if not topico:
+        return jsonify({"erro": "topico nao encontrado"}), 404
+
+    favorito_existente = Favorito.query.filter_by(
+        topico_id=id_topico,
+        usuario_id=id_usuario,
+    ).first()
+
+    if favorito_existente:
+        db.session.delete(favorito_existente)
+        db.session.commit()
+        return jsonify({"favorito": False})
+
+    novo = Favorito(topico_id=id_topico, usuario_id=id_usuario)
+    db.session.add(novo)
+    db.session.commit()
+    return jsonify({"favorito": True})
