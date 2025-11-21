@@ -124,3 +124,13 @@ input {
     border-radius: 50%;
     border: 2px solid #aaa;
 }
+
+a {
+    color: black;
+    font-size: 1.3em;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
