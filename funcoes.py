@@ -289,3 +289,29 @@ def favoritamento(id_topico):
     db.session.add(novo)
     db.session.commit()
     return jsonify({"favorito": True})
+
+def enviar_mensagem():
+    usuario_id = session.get("id")
+    conteudo = request.form.get("conteudo")
+
+    if not usuario_id:
+        return jsonify({"erro": "login necessário"}), 401
+
+    msg = Mensagem(conteudo=conteudo, usuario_id=usuario_id)
+    db.session.add(msg)
+    db.session.commit()
+
+    return jsonify({"status": "ok"})
+
+
+def listar_mensagens():
+    msgs = Mensagem.query.order_by(Mensagem.criado_em.asc()).all()
+
+    return jsonify([
+        {
+            "usuario": m.usuario.nome,
+            "conteudo": m.conteudo,
+            "criado_em": m.criado_em.strftime("%d/%m %H:%M"),
+        }
+        for m in msgs
+    ])

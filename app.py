@@ -196,5 +196,18 @@ def suporteContato():
     flash('Email enviado com sucesso!')
     return redirect(url_for('suporte'))
        
+
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
+
+@app.route("/enviar_mensagem", methods=["POST"])
+def rota_enviar_mensagem():
+    return enviar_mensagem()
+
+@app.route("/mensagens")
+def rota_mensagens():
+    return listar_mensagens()
+
 if __name__ == '__main__':
     app.run(debug=True)
