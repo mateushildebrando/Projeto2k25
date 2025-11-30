@@ -1,4 +1,4 @@
-from modelsTeste import *
+from models import *
 from config import *
 from funcoes import *
 

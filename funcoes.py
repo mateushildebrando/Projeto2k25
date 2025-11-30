@@ -1,4 +1,4 @@
-from modelsTeste import *
+from models import *
 from config import *
 
 CAMINHO_FOTOS = os.path.join(os.getcwd(), "static", "imagens", "fotosperfil")
